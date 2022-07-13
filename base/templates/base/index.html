@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://api.fontshare.com/v2/css?f[]=general-sans@500,400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'style-script/style.css' %}">
+	<title>PressThis</title>
+</head>
+<body>
+	<div class="container">
+		<div class="leaderboard">
+			<div class="head">Leaderboard</div>
+			<div class="body">
+				<ul>
+					{% for i in leaderboard %}
+					<li>{{i.name}} - {{i.score}}</li>
+					{% endfor%}
+				</ul>
+			</div>
+		</div>
+		<div class="wrapper">
+			<h1 id="dom-score">Score: 0</h1>
+			<div class="key key-shadow">
+				<span id="dom-key"></span>
+			</div>
+			<h3 id="dom-timer">60</h3>
+		</div>
+	</div>
+
+	<div id="go-modal" class="modal modal-close">
+		<div class="modal-content">
+			<div class="modal-body">
+				<h1>Game Over</h1>
+				<p id="your-score">Your score is</p>
+				<form method="post" autocomplete="off">
+					{% csrf_token %}
+					<input maxlength="100" id="name-input" placeholder="Your Name" type="text" name="name">
+					<div class="btns">
+						<button id="play-again">Play again</button>
+						<button id="save-score" name="score" type="submit" value="">Save Score</button>	
+					</div>
+					
+				</form>
+				
+				
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'style-script/script.js' %}"></script>
+</body>
+</html>
