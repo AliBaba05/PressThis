@@ -9,4 +9,4 @@ class Score(models.Model):
 		return self.username
 
 	class Meta:
-		ordering = ['score']
+		ordering = ['-score']
