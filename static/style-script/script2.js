@@ -40,7 +40,7 @@ class Game{
 		this.#dom_key.text(this.#key);
 	}
 
-	#refresh_stats(){
+	refresh_stats(){
 		this.#change_key_value(); 
 		this.#dom_score.text(`Score: ${this.#score}`);
 	}

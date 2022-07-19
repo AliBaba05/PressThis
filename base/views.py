@@ -4,15 +4,15 @@ from .models import Score
 def index(request):
 
 	if request.method == 'POST':
-		name = request.POST.get('name').strip(" ")
-		score = request.POST.get('score').strip(" ")
+		name = request.POST.get('name')
+		score = request.POST.get('score')
 		
-		print(name, score)
+		print(f'#{name}# %{score}%')
 
-		if name != None or '' and score != None or '':
+		if name not in [None, '', ' '] and score not in [None, '', ' ']:
 			Score.objects.create(
-				name=name,
-				score=score
+				name=name.strip(" "),
+				score=score.strip(" ")
 			)
 			return redirect('home')
 		
