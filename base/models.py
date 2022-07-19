@@ -1,7 +1,7 @@
 from django.db import models
 
 class Score(models.Model):
-	name = models.CharField(max_length=100)
+	name = models.CharField(max_length=25)
 	score = models.IntegerField()
 	date = models.DateField(auto_now_add=True)
 
