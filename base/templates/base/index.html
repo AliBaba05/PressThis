@@ -33,12 +33,16 @@
 			<div class="modal-body">
 				<h1>Game Over</h1>
 				<p id="your-score">Your score is</p>
-				<form method="post" autocomplete="off">
+				<form method="post" autocomplete="off" id="score-form">
 					{% csrf_token %}
-					<input maxlength="100" id="name-input" placeholder="Your Name" type="text" name="name">
+
+					<input maxlength="25" id="name-input" placeholder="Your Name" type="text" name="name">
+					
+					<input type="text" hidden id="score-val" name="score" value="">
+
 					<div class="btns">
 						<button id="play-again" type="button">Play again</button>
-						<button id="save-score" name="score" type="submit" value="">Save Score</button>	
+						<button id="save-score" type="submit">Save Score</button>
 					</div>
 					
 				</form>

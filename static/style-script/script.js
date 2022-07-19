@@ -97,7 +97,7 @@ class Game{
 	}
 
 	#set_score_value(){
-		$("#save-score").attr("value",this.#score);
+		$("#score-val").attr("value",this.#score);
 	}
 
 	// Timer
@@ -160,3 +160,4 @@ $(document).keydown((e)=>{
 $("#play-again").click(()=>{
 	game.play_again();	
 });
+
