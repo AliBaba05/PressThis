@@ -160,4 +160,3 @@ $(document).keydown((e)=>{
 $("#play-again").click(()=>{
 	game.play_again();	
 });
-
