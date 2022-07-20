@@ -1,8 +1,10 @@
 class Game{
 	#dom_key = $("#dom-key");
 	#dom_score = $("#dom-score");
-	#alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM";
 	#dom_timer = $('#dom-timer');
+	#letters = "QWERTYUIOPASDFGHJKLZXCVBNM";
+	#numbers = "1234567890";
+	#control = "";
 
 	#timer;
 	#time_left = 60;
@@ -11,9 +13,11 @@ class Game{
 	#key = '';
 	#score = 0;
 	#is_game_over = false;
-	
+	#game_mode = false;
+
 	constructor(){
 		this.#reset_all();
+		this.change_game_mode();
 	}
 
 	#reset_all(){
@@ -36,13 +40,13 @@ class Game{
 	}
 
 	#change_key_value(){
-		this.#key = this.#alphabet[Math.floor(Math.random() * this.#alphabet.length)]
+		this.#key = this.#control[Math.floor(Math.random() * this.#control.length)]
 		this.#dom_key.text(this.#key);
 	}
 
 	#refresh_stats(){
 		this.#change_key_value(); 
-		this.#dom_score.text(`Score: ${this.#score}`);
+		this.#dom_score.text(`Score: ${this.#score}`);	
 	}
 
 	#wrong_key_effect(){
@@ -53,7 +57,7 @@ class Game{
 	}
 
 	#is_key_includes(e){
-		return this.#alphabet.includes(e.key.toUpperCase());
+		return this.#control.includes(e.key.toUpperCase());
 	}
 
 	#is_key_right(e){
@@ -143,6 +147,27 @@ class Game{
 		$("#go-modal").toggleClass('modal-close modal-open');	
 	}
 
+
+	//Game mode
+
+	#set_game_mode(){
+		this.#game_mode = $("#mode-switch").prop("checked");
+	}
+
+	change_game_mode(){
+		this.#stop_timer();
+		this.#set_game_mode();
+
+		if(this.#game_mode){
+			this.#control = this.#numbers;
+		}else{
+			this.#control = this.#letters;			
+		}
+		this.#reset_all();
+		this.#dom_timer.html(this.#time_left);
+	}
+
+
 }
 
 
@@ -159,4 +184,9 @@ $(document).keydown((e)=>{
 
 $("#play-again").click(()=>{
 	game.play_again();	
+});
+
+
+$("#mode-switch").change(()=>{
+	game.change_game_mode();
 });
